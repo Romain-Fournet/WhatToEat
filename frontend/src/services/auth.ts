@@ -54,16 +54,6 @@ export const signIn = async (email: string, password: string) => {
   return { data, error };
 };
 
-export const getUser = async () => {
-  const { data: session, error } = await authClient.getSession();
-  console.log("session:", { session, error });
-  if (error) {
-    console.error("Erreur d'auth:", error);
-    return null;
-  }
-  return session;
-};
-
 export const logout = async () => {
   await authClient.signOut();
   window.location.href = "/";

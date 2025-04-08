@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { getUser, logout } from "../services/auth";
+import { logout } from "../services/auth";
+import { authClient } from "../services/auth-client";
 
 interface User {
   id: string;
@@ -14,17 +15,42 @@ interface User {
 export default function UserCard() {
   const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => {
-    getUser().then((data) => {
-      if (data?.user) setUser(data.user);
-    });
-  }, []);
+  const {
+    data: session,
+    isPending, // loading state
+    error, // error object
+  } = authClient.useSession();
 
-  if (!user) {
+  // Mettre à jour l'état de l'utilisateur une fois la session chargée
+  useEffect(() => {
+    if (!isPending && session) {
+      setUser(session.user);
+    }
+  }, [session, isPending]); // Ce useEffect sera déclenché à chaque fois que `session` ou `isPending` change.
+
+  // Afficher un message de chargement si la session est en cours de récupération
+  if (isPending) {
     return (
       <div className="flex items-center justify-center h-screen">
         <p className="text-lg font-semibold">Chargement...</p>
-        <p>{user}</p>
+      </div>
+    );
+  }
+
+  // Afficher un message d'erreur si une erreur se produit
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-lg font-semibold">Erreur : {error.message}</p>
+      </div>
+    );
+  }
+
+  // Afficher un message si l'utilisateur n'est pas trouvé
+  if (!user) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-lg font-semibold">Utilisateur non trouvé</p>
       </div>
     );
   }

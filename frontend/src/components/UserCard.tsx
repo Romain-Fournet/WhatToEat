@@ -24,6 +24,7 @@ export default function UserCard() {
     return (
       <div className="flex items-center justify-center h-screen">
         <p className="text-lg font-semibold">Chargement...</p>
+        <p>{user}</p>
       </div>
     );
   }

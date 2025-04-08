@@ -13,16 +13,13 @@ interface User {
 }
 
 export default function UserCard() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | undefined>(undefined);
+  const { data: currentUser } = authClient.useSession();
 
   useEffect(() => {
-    authClient.getSession().then((session) => {
-      if (session.data?.user) {
-        setUser(session.data.user as User);
-        console.log("Session fetched");
-      }
-    });
-  }, []);
+    console.log("User set!");
+    setUser(currentUser?.user);
+  }, [currentUser]);
 
   if (!user) return <div>Chargement...</div>;
 

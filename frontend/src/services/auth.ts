@@ -56,6 +56,7 @@ export const signIn = async (email: string, password: string) => {
 
 export const getUser = async () => {
   const { data, error } = await authClient.getSession();
+  console.log("session:", { data, error });
   if (error) {
     console.error("Erreur d'auth:", error);
     return null;

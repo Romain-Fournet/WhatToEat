@@ -20,6 +20,10 @@ app.all("/api/auth/*path", toNodeHandler(auth));
 // or only apply it to routes that don't interact with Better Auth
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
 });

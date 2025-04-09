@@ -1,35 +1,27 @@
 {
   "name": "backend",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "prisma:deploy": "prisma migrate dev",
-    "vercel-build": "npm run prisma:deploy && npm run build"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "description": "",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.0",
+    "prisma": "^6.6.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@auth/prisma-adapter": "^2.8.0",
-    "@prisma/client": "^6.5.0",
+    "@prisma/client": "^6.6.0",
     "better-auth": "^1.2.5",
-    "next": "15.2.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "zod": "^3.24.2"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
-    "@types/cors": "^2.8.17",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.2.4",
-    "prisma": "^6.5.0",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
   }
 }

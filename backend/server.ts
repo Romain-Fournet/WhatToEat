@@ -8,7 +8,7 @@ const port = 8000;
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // Replace with your frontend's origin
+    origin: process.env.TRUSTED_ORIGINS, // Replace with your frontend's origin
     methods: ["GET", "POST", "PUT", "DELETE"], // Specify allowed HTTP methods
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   })

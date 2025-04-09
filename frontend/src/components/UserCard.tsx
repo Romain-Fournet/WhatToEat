@@ -17,9 +17,14 @@ export default function UserCard() {
   const { data: currentUser } = authClient.useSession();
 
   useEffect(() => {
-    console.log("User set!");
+    if (user) {
+      console.log("User set!");
+    }
+    if (!user) {
+      console.log("User null");
+    }
     setUser(currentUser?.user);
-  }, [currentUser]);
+  }, [currentUser, user]);
 
   if (!user) return <div>Chargement...</div>;
 

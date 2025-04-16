@@ -1,27 +1,20 @@
-import { Link } from "react-router";
+import fridge from "../../public/img/fridge.png";
 
 const LandingPage = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center bg-white p-10 rounded-2xl shadow-2xl max-w-md w-full">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">Bienvenue 👋</h1>
-        <p className="text-gray-600 mb-8">
-          Commencez votre aventure dès maintenant
-        </p>
-
-        <div className="flex flex-col gap-4">
-          <Link to="/login">
-            <button className="w-full bg-indigo-600 text-white py-3 rounded-xl text-lg hover:bg-indigo-700 transition">
-              Se connecter
-            </button>
-          </Link>
-
-          <Link to="/register">
-            <button className="w-full bg-indigo-600 text-white py-3 rounded-xl text-lg hover:bg-indigo-700 transition">
-              Créer un compte
-            </button>
-          </Link>
-        </div>
+    <div className="flex flex-col items-center">
+      <div className="flex p-[50px] w-[60%] justify-center items-center">
+        <h1>What's in your fridge ?</h1>
+        <img src={fridge} className="h-[400px]" />
+      </div>
+      <div className="w-[60%] border-1 border-black flex justify-between pl-[20px] pr-[6px] py-[6px] rounded-[20px]">
+        <input
+          className="flex-1 focus:outline-none"
+          placeholder="Search for ingredients"
+        ></input>
+        <button className="px-[20px] py-[6px] bg-[#FFBA00] rounded-[14px] text-white font-medium">
+          Find recipes
+        </button>
       </div>
     </div>
   );

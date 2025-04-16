@@ -19,7 +19,7 @@ createRoot(document.getElementById("root")!).render(
         </Route>
         <Route element={<MainLayout />}>
           <Route index element={<LandingPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<Dashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

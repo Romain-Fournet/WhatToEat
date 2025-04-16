@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { logout } from "../services/auth";
-import useAuthSession from "../hooks/useAuthSession";
+import { authClient } from "../services/auth-client";
 
 interface User {
   id: string;
@@ -14,32 +14,26 @@ interface User {
 
 export default function UserCard() {
   const [user, setUser] = useState<User | undefined>(undefined);
-  const { data, isPending, error } = useAuthSession();
+  const { data: currentUser } = authClient.useSession();
 
   useEffect(() => {
-    if (user) {
-      console.log("User set!");
-    }
-    if (!user) {
-      console.log("User null");
-    }
-    setUser(data?.user);
-  }, [data, user]);
+    console.log("User set!");
+    setUser(currentUser?.user);
+  }, [currentUser]);
 
-  if (isPending) return <div>Chargement...</div>;
-
-  if (error) return <div>Error : {error.message}</div>;
+  if (!user) return <div>Chargement...</div>;
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
       <div className="bg-white shadow-lg rounded-lg p-6 text-center">
         <img
-          src={user?.image || "/default-avatar.png"}
+          src={user.image || "/default-avatar.png"}
           alt="Avatar"
           className="w-24 h-24 rounded-full mx-auto"
         />
-        <h2 className="text-xl font-bold mt-4">{user?.name}</h2>
-        <p className="text-gray-600">{user?.email}</p>
+        <h2 className="text-xl font-bold mt-4">{user.name}</h2>
+        <p className="text-gray-600">{user.email}</p>
+        <p>{user.emailVerified ? "true" : "false"}</p>
 
         <button
           onClick={logout}

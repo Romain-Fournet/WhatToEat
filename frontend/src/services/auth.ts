@@ -34,7 +34,7 @@ export const signIn = async (email: string, password: string) => {
     {
       email,
       password,
-      callbackURL: "/dashboard",
+      callbackURL: "/",
       rememberMe: false,
     },
     {

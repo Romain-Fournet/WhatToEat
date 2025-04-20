@@ -1,9 +1,9 @@
-import fridge from "../../public/img/fridge.png";
+import fridge from "/img/fridge.png";
 
 const LandingPage = () => {
   return (
-    <div className="flex flex-col items-center">
-      <div className="flex p-[50px] w-[60%] justify-center items-center">
+    <div className="flex flex-col items-center mt-15">
+      <div className="flex p-[50px] w-[60%] gap-[50px] justify-center items-center">
         <h1>What's in your fridge ?</h1>
         <img src={fridge} className="h-[400px]" />
       </div>

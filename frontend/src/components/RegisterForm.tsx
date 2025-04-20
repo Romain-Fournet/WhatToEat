@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { signUp } from "../services/auth";
 import { Link, useNavigate } from "react-router";
+import { FaArrowLeft } from "react-icons/fa6";
 
 export default function RegisterForm() {
   const [email, setEmail] = useState("");
@@ -12,16 +13,21 @@ export default function RegisterForm() {
     e.preventDefault();
     const { error } = await signUp(email, password, name);
     if (!error) {
-      navigate("/dashboard");
+      console.log("Erreur lors de l'inscription");
     }
+  };
+
+  const handleBackHome = () => {
+    navigate("/");
   };
 
   return (
     <>
-      <h1 className="text-center text-4xl font-bold text-gray-800 ">
-        S'enregistrer
-      </h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-6">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-[25%]">
+        <FaArrowLeft
+          className="cursor-pointer w-5 h-5"
+          onClick={() => handleBackHome()}
+        />
         <input
           type="text"
           placeholder="Nom"
@@ -46,11 +52,14 @@ export default function RegisterForm() {
           className="border p-2 rounded"
           required
         />
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+        <button type="submit" className="bg-[#FFBA00] text-white p-2 rounded">
           S'inscrire
         </button>
         <p className="flex gap-x-1">
-          Déja un compte ?<Link to={"/login"}>Se connecter</Link>
+          Déja un compte ?
+          <Link to={"/login"} className="text-[#FFBA00]">
+            Se connecter
+          </Link>
         </p>
       </form>
     </>

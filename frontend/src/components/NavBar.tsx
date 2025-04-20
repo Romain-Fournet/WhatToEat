@@ -11,6 +11,10 @@ export default function NavBar() {
     navigate("/login");
   };
 
+  const handleRegisterClick = () => {
+    navigate("/register");
+  };
+
   const handleProfileClick = () => {
     navigate("/profile");
   };
@@ -47,7 +51,10 @@ export default function NavBar() {
                 Login
               </p>
             </button>
-            <button className="border-2 border-[#FFBA00] rounded-[10px] px-[20px] py-[6px]">
+            <button
+              onClick={() => handleRegisterClick()}
+              className="border-2 border-[#FFBA00] rounded-[10px] px-[20px] py-[6px]"
+            >
               <p className="text-[16px] p-0 m-0 text-white font-medium">
                 Register
               </p>

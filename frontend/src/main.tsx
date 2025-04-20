@@ -8,6 +8,7 @@ import Dashboard from "./components/UserCard.tsx";
 import LandingPage from "./pages/LandingPage.tsx";
 import Login from "./pages/Login.tsx";
 import MainLayout from "./layout/MainLayout.tsx";
+import VerifyEmail from "./pages/VerifyEmail.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -16,6 +17,7 @@ createRoot(document.getElementById("root")!).render(
         <Route element={<AuthLayout />}>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
         </Route>
         <Route element={<MainLayout />}>
           <Route index element={<LandingPage />} />

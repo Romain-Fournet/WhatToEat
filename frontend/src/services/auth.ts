@@ -12,6 +12,7 @@ export const signUp = async (
       password, // user password -> min 8 characters by default
       name, // user display name
       image, // user image url (optional)
+      callbackURL: import.meta.env.VITE_BASE_URL + "/",
     },
     {
       onRequest: (ctx) => {
@@ -34,7 +35,6 @@ export const signIn = async (email: string, password: string) => {
     {
       email,
       password,
-      callbackURL: "/",
       rememberMe: false,
     },
     {
@@ -45,7 +45,10 @@ export const signIn = async (email: string, password: string) => {
         console.log("Signing successful!", ctx);
       },
       onError: (ctx) => {
-        // display the error message
+        if (ctx.error.status === 403) {
+          alert("Please verify your email address");
+        }
+        //you can also show the original error message
         alert(ctx.error.message);
       },
     }
@@ -57,4 +60,9 @@ export const signIn = async (email: string, password: string) => {
 export const logout = async () => {
   await authClient.signOut();
   window.location.href = "/";
+};
+
+export const getCurrentUser = () => {
+  const { data } = authClient.useSession();
+  return data;
 };

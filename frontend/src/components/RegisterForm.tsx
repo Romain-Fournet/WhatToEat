@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signUp } from "../services/auth";
 import { Link, useNavigate } from "react-router";
 import { FaArrowLeft } from "react-icons/fa6";
@@ -7,19 +7,33 @@ export default function RegisterForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [verifyEmail, setVerifyEmail] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {}, [verifyEmail]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const { error } = await signUp(email, password, name);
     if (!error) {
-      console.log("Erreur lors de l'inscription");
+      setVerifyEmail(true);
     }
   };
 
   const handleBackHome = () => {
     navigate("/");
   };
+
+  if (verifyEmail) {
+    return (
+      <div className="flex flex-col items-center">
+        <p>Un lien de verification a été envoyé sur ta boite mail</p>
+        <Link className="text-[#FFBA00]" to={"/"}>
+          Retour a l'accueil
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -52,7 +66,10 @@ export default function RegisterForm() {
           className="border p-2 rounded"
           required
         />
-        <button type="submit" className="bg-[#FFBA00] text-white p-2 rounded">
+        <button
+          type="submit"
+          className="cursor-pointer bg-[#FFBA00] text-white p-2 rounded"
+        >
           S'inscrire
         </button>
         <p className="flex gap-x-1">

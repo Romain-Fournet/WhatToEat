@@ -45,7 +45,10 @@ export default function LoginForm() {
           className="border p-2 rounded"
           required
         />
-        <button type="submit" className="bg-[#FFBA00] text-white p-2 rounded">
+        <button
+          type="submit"
+          className="cursor-pointer bg-[#FFBA00] text-white p-2 rounded"
+        >
           Se connecter
         </button>
         <p className="flex gap-x-1">
